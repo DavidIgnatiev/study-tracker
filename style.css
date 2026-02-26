@@ -1,0 +1,261 @@
+
+/*done - класс который мы добавляем на li когда задача выполнена, taskText - span с текстом задачи*/
+.done .taskText { /*Выбрать все элементы(на любом уровне вложенности) с классом taskList внутри элемента с классом done*/
+  text-decoration: line-through;/*Зачеркнуть текст*/
+  opacity: 0.6; /*Добавить прозрачность*/
+}
+
+/*Подсветка для задач с разным приоритетом и просроченных задач*/
+.priority-low {
+  color: #4CAF50;
+}
+.priority-medium {
+  color: #FFA726;
+}
+.priority-high {
+  color: #EF5350;
+}
+.overdue {
+  border-left: 3px solid #EF5350;
+  padding-left: 8px;
+  color: #EF5350;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0; /* чтобы padding не увеличивал размер элементов */
+}
+
+:root {
+    --bg: #0F0F13;
+    --surface: #1A1A24;
+    --border: #2A2A3A;
+    --text: #E8E8F0;
+    --text-muted: #888;
+    --accent: #6C63FF;
+    --danger: #EF5350;
+    --success: #4CAF50;
+    --warning: #FFA726;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+
+#app {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stats span {
+  background: var(--surface);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+form input, form select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+form input:focus, form select:focus {
+  background-color: var(--accent);
+}
+
+#taskTitle {
+  flex: 1;
+  min-width: 200px;
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+button[type="submit"] {
+  background-color: var(--accent);
+  color: white;
+}
+
+.doneBtn {
+  background: var(--success);
+  color: white;
+}
+
+.delete-btn {
+  background: var(--danger);
+  color: white;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters input, .filters select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+#seacrhInput {
+  flex: 1;
+}
+
+
+#taskList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#taskList li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+
+#taskList li:hover {
+    border-color: var(--accent); /* акцентный цвет при наведении */
+}
+
+.taskText {
+    flex: 1; /* текст занимает всё доступное место, кнопки справа */
+    font-size: 14px;
+}
+
+.done .taskText {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.overdue {
+    border-left: 3px solid var(--danger) !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* начало - невидимый */
+        transform: translateY(10px); /* начало - чуть ниже, например 10px */
+    }
+    to {
+        opacity: 1; /* конец - видимый */
+        transform: translateY(0px); /* конец - на своём месте */
+    }
+}
+
+#taskList li {
+    animation: fadeIn 0.3s ease;
+    /* остальные стили у тебя уже есть */
+}
+
+.taskText {
+    transition: opacity 0.3s, text-decoration 0.3s; /* плавный переход, например 0.3s */
+}
+
+/* Placeholder текст в полях */
+::placeholder {
+    color: var(--text-muted);
+}
+
+/* Скроллбар под стиль */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+/* Цвет выделения текста */
+::selection {
+    background: var(--accent);
+    color: white;
+}
+
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    form {
+        flex-direction: column; /* все поля в столбик */
+    }
+
+    #taskTitle {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+    }
+
+    #taskList li {
+        flex-wrap: wrap; /* кнопки переносятся под текст */
+        gap: 8px;
+    }
+
+    .stats {
+        flex-wrap: wrap;
+    }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app">
+
+        <header>
+            <h1>Study <span style="color: var(--accent)">Tracker</span></h1>
+        </header>
+
+
+        <div class="stats">
+            <span id="statTotal">Всего: 0</span>
+            <span id="statDone">Выполнено: 0</span>
+            <span id="statActive">Осталось: 0</span>
+        </div>
+
+
+        <!--Форма добавления задачи, у неё есть событие submit которое мы ловим в js и добавляем задачу-->
+        <form id="taskForm">
+            <!--Поле для названия задачи, required - заставляет браузер не отпралять форму если пусто-->
+            <input type="text" id="taskTitle" placeholder="TaskName" required>
+
+            <!--Выпадающий список-->
+            <select id="taskSubject" required>
+                <!--selected disabled - вариант который нельзя выбрать как реальный, required заставит выбрать другой-->
+                <option value="" selected disabled>Choose one option</option>
+                <option value="js">JavaScript</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="math">Math</option>
+                <option value="english">English</option>
+                <option value="python">Python</option>
+                <option value="vue">Vue</option>
+            </select>
+
+            <!--Аналогично что и выше-->
+            <select id="taskPriority" required>
+                <option value="" selected disabled>Choose priority</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+                <!--Дата дедлайна, без required, можно оставить пустым-->
+                <input type="date" id="taskDeadline">
+                <button type="submit">Add</button>
+        </form>
+        <div class="filters">
+            <input type="search" id="searchInput" placeholder="Search...">
+            <select id="statusFilter">
+                <option value="all" selected>All</option>
+                <option value="active">Active</option>
+                <option value="done">Done</option>
+            </select>
+
+            <select id="sortSelect">
+                <option value="default">Default</option>
+                <option value="priority">Priority</option>
+                <option value="deadline">Deadline</option>
+                <option value="date">Date</option>
+            </select>
+        </div>
+        <!--Контейнер, куда JS будет отправлять li с задачами-->
+        <ul id="taskList"></ul>
+        
+
+    </main>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
