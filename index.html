@@ -28,17 +28,16 @@
             <input type="text" id="taskTitle" placeholder="TaskName" required>
 
             <!--Выпадающий список-->
-            <select id="taskSubject" required>
-                <!--selected disabled - вариант который нельзя выбрать как реальный, required заставит выбрать другой-->
-                <option value="" selected disabled>Choose one option</option>
-                <option value="js">JavaScript</option>
-                <option value="html">HTML</option>
-                <option value="css">CSS</option>
-                <option value="math">Math</option>
-                <option value="english">English</option>
-                <option value="python">Python</option>
-                <option value="vue">Vue</option>
-            </select>
+            <input list="subjectList" id="taskSubject" placeholder="Subject" required>
+            <datalist id="subjectList">
+                <option value="JavaScript">
+                <option value="HTML">
+                <option value="CSS">
+                <option value="MATH">
+                <option value="ENGLISH">
+                <option value="PYTHON">
+                <option value="VUE">
+            </datalist>
 
             <!--Аналогично что и выше-->
             <select id="taskPriority" required>
