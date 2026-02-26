@@ -73,7 +73,7 @@ function renderTask(task) {
     li.innerHTML = `
         <span class="taskText">
             ${task.title} | ${task.subject} |
-            <span class="priority-${task.priority}">${task.priority}</span> |
+            <span class="priority-${task.priority}">${task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}</span> |
             ${task.deadline || "no deadline"}
         </span>
         <button type="button" class="doneBtn">Done</button>
